@@ -1,0 +1,24 @@
+{
+  "name": "sentencefactory",
+  "version": "1.0.0",
+  "description": "a simple game to practice finding incorrect verb forms",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpmi-13/sentencefactory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpmi-13/sentencefactory/issues"
+  },
+  "homepage": "https://github.com/lpmi-13/sentencefactory#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}

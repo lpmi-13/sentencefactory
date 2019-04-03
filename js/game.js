@@ -295,7 +295,7 @@ function update() {
 var bootState = {
   preload: function () {
     console.log('started preload in bootstate');
-    game.load.image('preloader', 'static/assets/images/loading.png');
+    game.load.image('preloader', 'assets/images/loading.png');
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -314,15 +314,15 @@ var bootState = {
 var loadState = {
   preload: function () {
     console.log('started loading assets');
-    game.load.image('factoryLogo', 'static/assets/images/factoryLogo.png');
-    game.load.image('selectButton', 'static/assets/images/redSelectButton.png');
-    game.load.image('background', 'static/assets/images/factoryWalls.png');
-    game.load.image('floor', 'static/assets/images/factoryFloor.png');
-    game.load.image('conveyor', 'static/assets/images/conveyor.png');
-    game.load.image('scaffolding', 'static/assets/images/scaffolding.png');
-    game.load.image('pauseButton', 'static/assets/images/pauseButtonOutlined.png');
-    game.load.image('playButton', 'static/assets/images/playButtonOutlined.png');
-    game.load.image('greenCheckMark', 'static/assets/images/checkmark.png');
+    game.load.image('factoryLogo', 'assets/images/factoryLogo.png');
+    game.load.image('selectButton', 'assets/images/redSelectButton.png');
+    game.load.image('background', 'assets/images/factoryWalls.png');
+    game.load.image('floor', 'assets/images/factoryFloor.png');
+    game.load.image('conveyor', 'assets/images/conveyor.png');
+    game.load.image('scaffolding', 'assets/images/scaffolding.png');
+    game.load.image('pauseButton', 'assets/images/pauseButtonOutlined.png');
+    game.load.image('playButton', 'assets/images/playButtonOutlined.png');
+    game.load.image('greenCheckMark', 'assets/images/checkmark.png');
 
     var loadingBar = game.add.sprite(0, game.world.height - 50, 'preloader');
     var loadingBarResizeX = game.world.width/387;
