@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lpmi-13/sentencefactory#readme",
   "devDependencies": {
     "gulp": "^4.0.0",
+    "gulp-strip-debug": "^3.0.0",
     "gulp-uglify": "^3.0.2"
   }
 }

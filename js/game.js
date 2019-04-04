@@ -2,6 +2,9 @@ function isPortrait(screen) {
   return screen.height > screen.width;
 }
 
+// this is the API call for sentences
+var BASE_URL = 'https://micromaterials.org/api/sentence/'
+
 var LINE_STOPPED_SPEED = 0;
 var LINE_STARTED_SPEED = -330;
 
@@ -11,7 +14,6 @@ var levelText;
 
 var pauseFlag = false;
 var feature = '';
-var queryParams = '?level=';
 var level = 0;
 
 featureMap = {
@@ -26,7 +28,6 @@ var bounds;
 var sentenceWord;
 
 var scrollPool;
-
 
 function playPastParticiple() {
   console.log('past participle!');
@@ -44,6 +45,12 @@ function playPresentParticiple() {
   console.log('present participles!');
   feature = 'present_participle';
   game.state.start('play');
+}
+
+function setUpPageAlignment() {
+  game.scale.pageAlignHorizontally = true;
+  game.scale.pageAlignVertically = true;
+  game.scale.refresh();
 }
 
 function preload() {
@@ -80,19 +87,19 @@ var sentenceFactory = (function () {
 
   factory.loadSentences = function loadSentences(process) {
     console.log('Loading a fresh batch of sentences.');
-    var urlString = feature + queryParams;
+    var urlString = BASE_URL + feature; 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/' + urlString);
+    xhr.open('GET', urlString);
     xhr.onload = function () {
       if (xhr.status === 200) {
         counter = -1;
         sentences = JSON.parse(xhr.response).sentences;
-        process(null, factory);
       } else {
         console.log('AJAX error when loading a fresh batch of sentences.', xhr.response);
         process(xhr.status, factory);
       }
     };
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
   };
 
@@ -106,9 +113,7 @@ function create() {
   var scaleY = game.world.height / 800;
 
   game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-  game.scale.pageAlignHorizontally = true;
-  game.scale.pageAlignVertically = true;
-  game.scale.refresh();
+  setUpPageAlignment();
 
   var background = game.add.tileSprite(0, 0, 1200, 800, 'background');
   background.tileScale.x = scaleX;
@@ -314,14 +319,14 @@ var bootState = {
 var loadState = {
   preload: function () {
     console.log('started loading assets');
-    game.load.image('factoryLogo', 'assets/images/factoryLogo.png');
+    game.load.image('factoryLogo', 'assets/images/factoryLogo.jpg');
     game.load.image('selectButton', 'assets/images/redSelectButton.png');
     game.load.image('background', 'assets/images/factoryWalls.png');
     game.load.image('floor', 'assets/images/factoryFloor.png');
     game.load.image('conveyor', 'assets/images/conveyor.png');
     game.load.image('scaffolding', 'assets/images/scaffolding.png');
-    game.load.image('pauseButton', 'assets/images/pauseButtonOutlined.png');
-    game.load.image('playButton', 'assets/images/playButtonOutlined.png');
+    game.load.image('pauseButton', 'assets/images/pauseButtonOutlined.webp');
+    game.load.image('playButton', 'assets/images/playButtonOutlined.webp');
     game.load.image('greenCheckMark', 'assets/images/checkmark.png');
 
     var loadingBar = game.add.sprite(0, game.world.height - 50, 'preloader');
@@ -354,10 +359,7 @@ var splashScreenState = {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    game.scale.pageAlignHorizontally = true;
-    game.scale.pageAlignVertically = true;
-
-    game.scale.refresh();
+    setUpPageAlignment();
 
     var logoTextFontSize = isPortrait(screen) ? '1.75em Georgia' : '3.5em Georgia';
 
@@ -398,10 +400,7 @@ var instructionState = {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    game.scale.pageAlignHorizontally = true;
-    game.scale.pageAlignVertically = true;
-
-    game.scale.refresh();
+    setUpPageAlignment();
 
     var instructionsFontSize = isPortrait(screen) ? '1.75em Georga' : '4.5em Georgia';
 
@@ -428,10 +427,7 @@ var selectState = {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    game.scale.pageAlignHorizontally = true;
-    game.scale.pageAlignVertically = true;
-
-    game.scale.refresh();
+    setUpPageAlignment();
 
     var selectionFontSize = isPortrait(screen) ? '1.75em Georgia' : '4.5em Georgia';
 
@@ -515,10 +511,7 @@ var winState = {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    game.scale.pageAlignHorizontally = true;
-    game.scale.pageAlignVertically = true;
-
-    game.scale.refresh();
+    setUpPageAlignment();
 
     var winFontSize = isPortrait(screen) ? '2.5em Georgia' : '4.5em Georgia';
 
@@ -528,8 +521,6 @@ var winState = {
     game.input.onTap.addOnce(this.start, this);
 
     //feature = '';
-    level++;
-    queryParams = '?level=' + level;
   },
 
   start: function() {
