@@ -2146,6 +2146,24 @@ button.sentence-token:disabled {
   }
 }
 
+@media (max-width: 40rem) and (max-height: 46rem) {
+  .practice-shell {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .practice-header {
+    min-height: 4rem;
+  }
+
+  .production {
+    grid-template-rows: auto minmax(18rem, 1fr) auto auto;
+  }
+
+  .sentence-stage {
+    min-height: 18rem;
+  }
+}
+
 @media (max-height: 43rem) and (min-width: 40.01rem) {
   .practice-shell {
     grid-template-rows: auto minmax(31rem, 1fr);

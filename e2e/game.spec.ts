@@ -116,3 +116,19 @@ test('does not overflow a mobile viewport', async ({ page }) => {
 
   expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client + 1);
 });
+
+test('keeps both game controls visible in a short mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 650 });
+  await page.goto('/');
+  await page.getByRole('button', { name: /Start shift/i }).click();
+
+  const pause = page.getByRole('button', { name: 'Pause line' });
+  const reveal = page.getByRole('button', { name: 'Show fix' });
+  await expect(pause).toBeInViewport();
+  await expect(reveal).toBeInViewport();
+
+  const controlsBottom = await page
+    .locator('.line-actions')
+    .evaluate((controls) => Math.ceil(controls.getBoundingClientRect().bottom));
+  expect(controlsBottom).toBeLessThanOrEqual(650);
+});
