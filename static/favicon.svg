@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Sentence Factory</title>
+  <rect width="64" height="64" rx="15" fill="#101b24"/>
+  <path d="M47 8h8v29l-4 7-4-7z" fill="#77d7e5"/>
+  <path d="M9 49h46v7H9z" fill="#ff6b3d"/>
+  <text x="12" y="39" fill="#fffaf0" font-family="Arial,sans-serif" font-size="22" font-weight="800">SF</text>
+</svg>

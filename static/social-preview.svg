@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Sentence Factory</title>
+  <desc id="description">Find the fault. Keep English moving.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0v32" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#101b24"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1120" cy="-10" r="235" fill="none" stroke="#77d7e5" stroke-opacity=".16" stroke-width="70"/>
+  <path d="M0 570h1200v60H0z" fill="#ff6b3d"/>
+
+  <g transform="translate(72 62)">
+    <rect width="56" height="56" rx="8" fill="#fffaf0"/>
+    <path d="M43 0h13v33l-6 10-7-10z" fill="#77d7e5"/>
+    <text x="10" y="37" fill="#101b24" font-family="Arial,sans-serif" font-size="21" font-weight="800">SF</text>
+    <text x="76" y="37" fill="#fffaf0" font-family="Arial,sans-serif" font-size="27" font-weight="800">Sentence Factory</text>
+  </g>
+
+  <g transform="translate(72 190)">
+    <rect width="250" height="36" fill="#ccec63"/>
+    <text x="17" y="24" fill="#101b24" font-family="Arial,sans-serif" font-size="13" font-weight="800" letter-spacing="2">QUALITY CONTROL</text>
+    <text x="0" y="119" fill="#fffaf0" font-family="Georgia,serif" font-size="75">Find the fault.</text>
+    <text x="0" y="203" fill="#ff6b3d" font-family="Georgia,serif" font-size="70" font-style="italic">Keep English moving.</text>
+    <text x="4" y="264" fill="#aebbc1" font-family="Arial,sans-serif" font-size="23">Spot broken verb forms on the production line.</text>
+  </g>
+
+  <g transform="translate(750 142)">
+    <rect width="380" height="330" rx="24" fill="#172731" stroke="#ffffff" stroke-opacity=".16"/>
+    <circle cx="35" cy="34" r="5" fill="#ccec63"/>
+    <text x="51" y="39" fill="#ccec63" font-family="Arial,sans-serif" font-size="12" font-weight="800" letter-spacing="2">LINE ACTIVE</text>
+    <text x="338" y="39" text-anchor="end" fill="#9cacb3" font-family="Arial,sans-serif" font-size="11" font-weight="700">04 / 08</text>
+    <line x1="24" y1="64" x2="356" y2="64" stroke="#ffffff" stroke-opacity=".13"/>
+    <text x="28" y="118" fill="#fffaf0" font-family="Georgia,serif" font-size="28">The crew</text>
+    <rect x="145" y="86" width="109" height="45" rx="5" fill="none" stroke="#ff6b3d" stroke-width="3"/>
+    <text x="157" y="118" fill="#ff6b3d" font-family="Georgia,serif" font-size="28">inspect</text>
+    <text x="28" y="165" fill="#fffaf0" font-family="Georgia,serif" font-size="28">the final batch.</text>
+    <line x1="28" y1="204" x2="352" y2="204" stroke="#ffffff" stroke-opacity=".13"/>
+    <text x="28" y="235" fill="#9cacb3" font-family="Arial,sans-serif" font-size="11" font-weight="800" letter-spacing="1.8">FAULT DETECTED</text>
+    <text x="28" y="273" fill="#ccec63" font-family="Arial,sans-serif" font-size="20" font-weight="800">inspect  →  inspected</text>
+    <g transform="translate(22 295)" fill="none" stroke="#52636d" stroke-width="2">
+      <circle cx="18" cy="18" r="15"/><circle cx="68" cy="18" r="15"/><circle cx="118" cy="18" r="15"/><circle cx="168" cy="18" r="15"/><circle cx="218" cy="18" r="15"/><circle cx="268" cy="18" r="15"/><circle cx="318" cy="18" r="15"/>
+    </g>
+  </g>
+
+  <text x="72" y="607" fill="#101b24" font-family="Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="3">PAST TENSE  ◆  PRESENT PARTICIPLES  ◆  PAST PARTICIPLES</text>
+</svg>

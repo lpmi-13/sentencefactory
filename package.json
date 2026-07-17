@@ -1,25 +1,37 @@
 {
   "name": "sentencefactory",
-  "version": "1.0.0",
-  "description": "a simple game to practice finding incorrect verb forms",
-  "main": "index.js",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An accessible verb-form spotting game powered by a bundled UD English corpus.",
+  "author": "Adam Leskis",
+  "license": "MIT",
   "scripts": {
-    "build": "gulp",
-    "watch": "gulp watch"
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "corpus:update": "python3 scripts/update_corpus.py",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run test && npm run build && npm run format:check"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lpmi-13/sentencefactory.git"
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "npm": ">=11.6.1 <13"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lpmi-13/sentencefactory/issues"
-  },
-  "homepage": "https://github.com/lpmi-13/sentencefactory#readme",
+  "packageManager": "npm@11.6.1",
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-strip-debug": "^3.0.0",
-    "gulp-uglify": "^3.0.2"
+    "@axe-core/playwright": "^4.12.1",
+    "@biomejs/biome": "^2.5.3",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
   }
 }

@@ -1,14 +1,230 @@
 <!doctype html>
-<html>
-    <head>
-        <title>Sentence Factory</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
-        <script src="/dist/phaser.arcade.min.js"></script>
-        <script src="/dist/game.js"></script>
-	<script src="/dist/instructions.js"></script>
-    </head>
-    <body style="margin:0px; padding:0px">
-        <div id="gameDiv"> </div>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Spot broken verb forms on the production line and build sharper English instincts in Sentence Factory."
+    />
+    <meta name="application-name" content="Sentence Factory" />
+    <meta name="theme-color" content="#101b24" />
+
+    <link rel="canonical" href="https://sentencefactory.netlify.app/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sentence Factory" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content="https://sentencefactory.netlify.app/" />
+    <meta property="og:title" content="Sentence Factory — Find the fault. Keep English moving." />
+    <meta
+      property="og:description"
+      content="A fast, focused game for spotting broken past tense and participle forms."
+    />
+    <meta
+      property="og:image"
+      content="https://sentencefactory.netlify.app/social-preview.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://sentencefactory.netlify.app/social-preview.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Sentence Factory: Find the fault. Keep English moving."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sentence Factory — Find the fault." />
+    <meta
+      name="twitter:description"
+      content="Spot broken verb forms and keep the sentence line moving."
+    />
+    <meta
+      name="twitter:image"
+      content="https://sentencefactory.netlify.app/social-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Sentence Factory: Find the fault. Keep English moving."
+    />
+
+    <title>Sentence Factory — Verb-form practice</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the factory floor</a>
+
+    <div class="landing-view" id="landing-view">
+      <main class="menu-screen" id="main-content">
+        <section class="menu-panel" aria-labelledby="menu-title">
+          <header class="menu-title">
+            <span class="brand-mark" aria-hidden="true">SF</span>
+            <div>
+              <p>Verb-form game</p>
+              <h1 id="menu-title">Sentence Factory</h1>
+            </div>
+          </header>
+
+          <p class="menu-instruction">
+            Tap the faulty verb before the sentence reaches the exit.
+          </p>
+
+          <form id="shift-form">
+            <fieldset class="mode-picker">
+              <legend>Choose a line</legend>
+              <label class="mode-option mode-option-orange">
+              <input type="radio" name="feature" value="simple_past" checked />
+                <span class="mode-option-content">
+                  <span><b>01</b> VBD</span>
+                  <strong>Past tense</strong>
+                  <small>walk <i aria-hidden="true">→</i> walked</small>
+                </span>
+              </label>
+
+              <label class="mode-option mode-option-blue">
+              <input type="radio" name="feature" value="present_participle" />
+                <span class="mode-option-content">
+                  <span><b>02</b> VBG</span>
+                  <strong>Present participles</strong>
+                  <small>build <i aria-hidden="true">→</i> building</small>
+                </span>
+              </label>
+
+              <label class="mode-option mode-option-lime">
+              <input type="radio" name="feature" value="past_participle" />
+                <span class="mode-option-content">
+                  <span><b>03</b> VBN</span>
+                  <strong>Past participles</strong>
+                  <small>take <i aria-hidden="true">→</i> taken</small>
+                </span>
+              </label>
+            </fieldset>
+
+            <div class="menu-start">
+              <span id="shift-summary">Past tense · 8 sentences</span>
+              <button type="submit">Start shift <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+
+          <p class="menu-source">
+            Sentences from
+            <a href="https://universaldependencies.org/treebanks/en_pud/index.html"
+              >UD English PUD</a
+            > · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <section
+      class="practice"
+      id="practice"
+      aria-labelledby="practice-title"
+      tabindex="-1"
+      hidden
+    >
+      <div class="practice-shell">
+        <header class="practice-header">
+          <div class="practice-identity">
+            <span class="brand-mark" aria-hidden="true">SF</span>
+            <div>
+              <p id="practice-kicker">Line 01 / Past tense</p>
+              <h2 id="practice-title">Sentence Factory</h2>
+            </div>
+          </div>
+
+          <div class="shift-meter">
+            <span id="batch-label">Sentence 1 of 8</span>
+            <progress id="shift-progress" max="8" value="1">1 of 8</progress>
+          </div>
+
+          <div class="practice-stats">
+            <p><span>Score</span><strong id="score-value">0</strong></p>
+            <p><span>Streak</span><strong id="streak-value">0</strong></p>
+            <button type="button" id="change-shift">Change line</button>
+          </div>
+        </header>
+
+        <div class="production" id="production-panel">
+          <div class="production-status">
+            <div>
+              <span>Quality-control brief</span>
+              <strong id="production-prompt">Find the verb that should be in the past tense.</strong>
+            </div>
+            <span class="untimed-badge" id="movement-status"
+              ><i aria-hidden="true"></i> Line moving</span
+            >
+          </div>
+
+          <div class="sentence-stage">
+            <div class="factory-backdrop" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+            <div class="stage-label">
+              <span>Shipping exit</span><span>Tap the faulty word</span><span>Intake bay 03</span>
+            </div>
+
+            <div class="conveyor-zone">
+              <div class="shipping-gate" aria-hidden="true"><span>OUT</span></div>
+              <div class="sentence-lane">
+                <div class="sentence-carriage" id="sentence-carriage">
+                  <span class="carriage-stamp" aria-hidden="true">QC</span>
+                  <div class="sentence-words" id="sentence-words"></div>
+                </div>
+              </div>
+              <div class="intake-gate" aria-hidden="true"><span>IN</span></div>
+              <div class="stage-belt" aria-hidden="true">
+                <div class="belt-tread"></div>
+                <div class="belt-rollers">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback-row">
+            <div class="feedback" id="feedback" role="status" aria-live="polite">
+              Tap the faulty verb before the sentence reaches the exit.
+            </div>
+            <div class="line-actions">
+              <button
+                class="pause-button"
+                id="pause-line"
+                type="button"
+                aria-pressed="false"
+              >
+                Pause line
+              </button>
+              <button class="reveal-button" id="reveal-button" type="button">Show fix</button>
+            </div>
+          </div>
+
+          <p class="sentence-source">
+            <span>Source:</span> <a id="corpus-link" href="#source">UD English PUD</a> ·
+            <span id="source-sentence-id"></span> ·
+            <a id="license-link" href="#source">CC BY-SA 3.0</a>
+          </p>
+        </div>
+
+        <div class="shift-result" id="shift-result" hidden>
+          <p>Shift complete</p>
+          <strong id="result-score">0</strong>
+          <span>quality points</span>
+          <h3 id="result-title">The line is clear.</h3>
+          <p id="result-message"></p>
+          <p class="best-score" id="best-score"></p>
+          <div>
+            <button type="button" id="repeat-shift">Run this line again</button>
+            <button type="button" id="result-change-shift">Choose another line</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
