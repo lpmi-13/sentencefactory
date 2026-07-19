@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 async function pauseAtCentre(page: Page): Promise<void> {
-  await page.getByRole('button', { name: 'Pause line' }).click();
+  await page.getByRole('button', { name: 'Pause' }).click();
   await page.locator('#sentence-carriage').evaluate((carriage) => {
     const animation = carriage.getAnimations()[0];
     const timing = animation?.effect?.getComputedTiming();
@@ -17,7 +17,7 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
 
   await expect(page.getByRole('heading', { name: 'Sentence Factory' })).toBeVisible();
   await page.getByRole('radio', { name: /Past tense/i }).check();
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await expect(page.getByRole('heading', { name: 'Sentence Factory' })).toBeVisible();
   await expect(page.getByText('Sentence 1 of 8')).toBeVisible();
@@ -36,10 +36,10 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
   for (let index = 0; index < count; index += 1) {
     const word = words.nth(index);
     if (!(await word.isDisabled())) await word.dispatchEvent('click');
-    if ((await page.getByRole('status').textContent())?.includes('Line repaired')) break;
+    if ((await page.getByRole('status').textContent())?.includes('Repaired')) break;
   }
 
-  await expect(page.getByRole('status')).toContainText('Line repaired');
+  await expect(page.getByRole('status')).toContainText('Repaired');
   await expect(page.locator('.sentence-source')).toContainText('UD English PUD');
   await expect(page.locator('#sentence-carriage')).not.toHaveClass(/is-shipping/);
   await page.waitForTimeout(1_000);
@@ -50,7 +50,7 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
 
 test('moves sentences right to left, pauses, and advances missed sentences', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await expect(page.locator('#landing-view')).toBeHidden();
   await expect(page.locator('#practice')).toBeVisible();
@@ -75,7 +75,7 @@ test('moves sentences right to left, pauses, and advances missed sentences', asy
   const movingX = (await carriage.boundingBox())?.x ?? 0;
   expect(movingX).toBeLessThan(startX);
 
-  await page.getByRole('button', { name: 'Pause line' }).click();
+  await page.getByRole('button', { name: 'Pause' }).click();
   const pausedX = (await carriage.boundingBox())?.x ?? 0;
   await page.waitForTimeout(350);
   const stillPausedX = (await carriage.boundingBox())?.x ?? 0;
@@ -90,20 +90,20 @@ test('supports revealing a repair and changing production lines', async ({ page 
   await page.goto('/');
   await page.locator('label').filter({ hasText: 'Present participles' }).click();
   await expect(page.getByRole('radio', { name: /Present participles/i })).toBeChecked();
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await page.getByRole('button', { name: 'Show fix' }).click();
   await expect(page.getByRole('status')).toContainText('Fix shown');
 
-  await page.getByRole('button', { name: 'Change line' }).click();
-  await expect(page.getByRole('group', { name: 'Choose a line' })).toBeVisible();
+  await page.getByRole('button', { name: 'Change category' }).click();
+  await expect(page.getByRole('group', { name: 'Choose a category' })).toBeVisible();
 });
 
 test('has no detectable accessibility violations on the landing page or game', async ({ page }) => {
   await page.goto('/');
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
@@ -120,9 +120,9 @@ test('does not overflow a mobile viewport', async ({ page }) => {
 test('keeps both game controls visible in a short mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 650 });
   await page.goto('/');
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
-  const pause = page.getByRole('button', { name: 'Pause line' });
+  const pause = page.getByRole('button', { name: 'Pause' });
   const reveal = page.getByRole('button', { name: 'Show fix' });
   await expect(pause).toBeInViewport();
   await expect(reveal).toBeInViewport();

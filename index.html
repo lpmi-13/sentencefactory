@@ -75,11 +75,10 @@
 
           <form id="shift-form">
             <fieldset class="mode-picker">
-              <legend>Choose a line</legend>
+              <legend>Choose a category</legend>
               <label class="mode-option mode-option-orange">
               <input type="radio" name="feature" value="simple_past" checked />
                 <span class="mode-option-content">
-                  <span><b>01</b> VBD</span>
                   <strong>Past tense</strong>
                   <small>walk <i aria-hidden="true">→</i> walked</small>
                 </span>
@@ -88,7 +87,6 @@
               <label class="mode-option mode-option-blue">
               <input type="radio" name="feature" value="present_participle" />
                 <span class="mode-option-content">
-                  <span><b>02</b> VBG</span>
                   <strong>Present participles</strong>
                   <small>build <i aria-hidden="true">→</i> building</small>
                 </span>
@@ -97,7 +95,6 @@
               <label class="mode-option mode-option-lime">
               <input type="radio" name="feature" value="past_participle" />
                 <span class="mode-option-content">
-                  <span><b>03</b> VBN</span>
                   <strong>Past participles</strong>
                   <small>take <i aria-hidden="true">→</i> taken</small>
                 </span>
@@ -106,7 +103,7 @@
 
             <div class="menu-start">
               <span id="shift-summary">Past tense · 8 sentences</span>
-              <button type="submit">Start shift <span aria-hidden="true">→</span></button>
+              <button type="submit">Start exercise <span aria-hidden="true">→</span></button>
             </div>
           </form>
 
@@ -130,11 +127,8 @@
       <div class="practice-shell">
         <header class="practice-header">
           <div class="practice-identity">
-            <span class="brand-mark" aria-hidden="true">SF</span>
-            <div>
-              <p id="practice-kicker">Line 01 / Past tense</p>
-              <h2 id="practice-title">Sentence Factory</h2>
-            </div>
+            <p id="practice-kicker">Category 01 / Past tense</p>
+            <h2 id="practice-title">Sentence Factory</h2>
           </div>
 
           <div class="shift-meter">
@@ -145,43 +139,37 @@
           <div class="practice-stats">
             <p><span>Score</span><strong id="score-value">0</strong></p>
             <p><span>Streak</span><strong id="streak-value">0</strong></p>
-            <button type="button" id="change-shift">Change line</button>
+            <button type="button" id="change-shift">Change category</button>
           </div>
         </header>
 
         <div class="production" id="production-panel">
           <div class="production-status">
-            <div>
-              <span>Quality-control brief</span>
-              <strong id="production-prompt">Find the verb that should be in the past tense.</strong>
-            </div>
+            <strong id="production-prompt">Find the verb that should be in the past tense.</strong>
             <span class="untimed-badge" id="movement-status"
-              ><i aria-hidden="true"></i> Line moving</span
+              ><i aria-hidden="true"></i> Moving</span
             >
           </div>
 
           <div class="sentence-stage">
-            <div class="factory-backdrop" aria-hidden="true">
-              <i></i><i></i><i></i>
-            </div>
-            <div class="stage-label">
-              <span>Shipping exit</span><span>Tap the faulty word</span><span>Intake bay 03</span>
-            </div>
-
             <div class="conveyor-zone">
-              <div class="shipping-gate" aria-hidden="true"><span>OUT</span></div>
               <div class="sentence-lane">
                 <div class="sentence-carriage" id="sentence-carriage">
-                  <span class="carriage-stamp" aria-hidden="true">QC</span>
                   <div class="sentence-words" id="sentence-words"></div>
                 </div>
               </div>
-              <div class="intake-gate" aria-hidden="true"><span>IN</span></div>
               <div class="stage-belt" aria-hidden="true">
                 <div class="belt-tread"></div>
                 <div class="belt-rollers">
                   <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
                 </div>
+              </div>
+              <div class="constructor" aria-hidden="true">
+                <div class="constructor-body">
+                  <span class="constructor-light"></span>
+                  <span class="constructor-panel"></span>
+                </div>
+                <div class="constructor-mouth"></div>
               </div>
             </div>
           </div>
@@ -197,7 +185,7 @@
                 type="button"
                 aria-pressed="false"
               >
-                Pause line
+                Pause
               </button>
               <button class="reveal-button" id="reveal-button" type="button">Show fix</button>
             </div>
@@ -211,15 +199,15 @@
         </div>
 
         <div class="shift-result" id="shift-result" hidden>
-          <p>Shift complete</p>
+          <p>Exercise complete</p>
           <strong id="result-score">0</strong>
           <span>quality points</span>
-          <h3 id="result-title">The line is clear.</h3>
+          <h3 id="result-title">All clear.</h3>
           <p id="result-message"></p>
           <p class="best-score" id="best-score"></p>
           <div>
-            <button type="button" id="repeat-shift">Run this line again</button>
-            <button type="button" id="result-change-shift">Choose another line</button>
+            <button type="button" id="repeat-shift">Run this category again</button>
+            <button type="button" id="result-change-shift">Choose another category</button>
           </div>
         </div>
       </div>
