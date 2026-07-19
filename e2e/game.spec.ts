@@ -17,7 +17,7 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
 
   await expect(page.getByRole('heading', { name: 'Sentence Factory' })).toBeVisible();
   await page.getByRole('radio', { name: /Past tense/i }).check();
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await expect(page.getByRole('heading', { name: 'Sentence Factory' })).toBeVisible();
   await expect(page.getByText('Sentence 1 of 8')).toBeVisible();
@@ -50,7 +50,7 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
 
 test('moves sentences right to left, pauses, and advances missed sentences', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await expect(page.locator('#landing-view')).toBeHidden();
   await expect(page.locator('#practice')).toBeVisible();
@@ -90,7 +90,7 @@ test('supports revealing a repair and changing production lines', async ({ page 
   await page.goto('/');
   await page.locator('label').filter({ hasText: 'Present participles' }).click();
   await expect(page.getByRole('radio', { name: /Present participles/i })).toBeChecked();
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   await page.getByRole('button', { name: 'Show fix' }).click();
   await expect(page.getByRole('status')).toContainText('Fix shown');
@@ -103,7 +103,7 @@ test('has no detectable accessibility violations on the landing page or game', a
   await page.goto('/');
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
@@ -120,7 +120,7 @@ test('does not overflow a mobile viewport', async ({ page }) => {
 test('keeps both game controls visible in a short mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 650 });
   await page.goto('/');
-  await page.getByRole('button', { name: /Start shift/i }).click();
+  await page.getByRole('button', { name: /Start exercise/i }).click();
 
   const pause = page.getByRole('button', { name: 'Pause' });
   const reveal = page.getByRole('button', { name: 'Show fix' });

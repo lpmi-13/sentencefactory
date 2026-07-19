@@ -398,7 +398,7 @@ function reducedMotion(): boolean {
 }
 
 function resultTitle(score: number): string {
-  if (score >= 72) return 'Precision shift.';
+  if (score >= 72) return 'Precision work.';
   if (score >= 52) return 'All clear.';
   return 'Repairs complete.';
 }
