@@ -75,7 +75,7 @@
 
           <form id="shift-form">
             <fieldset class="mode-picker">
-              <legend>Choose a line</legend>
+              <legend>Choose a category</legend>
               <label class="mode-option mode-option-orange">
               <input type="radio" name="feature" value="simple_past" checked />
                 <span class="mode-option-content">
@@ -127,7 +127,7 @@
       <div class="practice-shell">
         <header class="practice-header">
           <div class="practice-identity">
-            <p id="practice-kicker">Line 01 / Past tense</p>
+            <p id="practice-kicker">Category 01 / Past tense</p>
             <h2 id="practice-title">Sentence Factory</h2>
           </div>
 
@@ -139,7 +139,7 @@
           <div class="practice-stats">
             <p><span>Score</span><strong id="score-value">0</strong></p>
             <p><span>Streak</span><strong id="streak-value">0</strong></p>
-            <button type="button" id="change-shift">Change line</button>
+            <button type="button" id="change-shift">Change category</button>
           </div>
         </header>
 
@@ -147,7 +147,7 @@
           <div class="production-status">
             <strong id="production-prompt">Find the verb that should be in the past tense.</strong>
             <span class="untimed-badge" id="movement-status"
-              ><i aria-hidden="true"></i> Line moving</span
+              ><i aria-hidden="true"></i> Moving</span
             >
           </div>
 
@@ -178,7 +178,7 @@
                 type="button"
                 aria-pressed="false"
               >
-                Pause line
+                Pause
               </button>
               <button class="reveal-button" id="reveal-button" type="button">Show fix</button>
             </div>
@@ -195,12 +195,12 @@
           <p>Shift complete</p>
           <strong id="result-score">0</strong>
           <span>quality points</span>
-          <h3 id="result-title">The line is clear.</h3>
+          <h3 id="result-title">All clear.</h3>
           <p id="result-message"></p>
           <p class="best-score" id="best-score"></p>
           <div>
-            <button type="button" id="repeat-shift">Run this line again</button>
-            <button type="button" id="result-change-shift">Choose another line</button>
+            <button type="button" id="repeat-shift">Run this category again</button>
+            <button type="button" id="result-change-shift">Choose another category</button>
           </div>
         </div>
       </div>

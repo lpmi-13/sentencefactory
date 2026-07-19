@@ -121,7 +121,7 @@ export class SentenceFactoryApp {
     this.linePaused = reducedMotion();
     const copy = FEATURE_COPY[feature];
 
-    this.elements.practiceKicker.textContent = `Line ${copy.line} / ${copy.name}`;
+    this.elements.practiceKicker.textContent = `Category ${copy.line} / ${copy.name}`;
     this.elements.landingView.hidden = true;
     this.elements.practice.hidden = false;
     this.elements.productionPanel.hidden = false;
@@ -204,7 +204,7 @@ export class SentenceFactoryApp {
         this.lineSpeed = Math.min(2.2, this.lineSpeed + 0.2);
         this.applyRunSpeed();
       }
-      this.setFeedback('Wrong word — the line is speeding up.', 'error');
+      this.setFeedback('Wrong word — the sentence is speeding up.', 'error');
       return;
     }
     if (result.kind !== 'correct') return;
@@ -212,7 +212,7 @@ export class SentenceFactoryApp {
     const { answer, replacement } = session.current;
     this.renderExercise(false);
     this.setFeedback(
-      `Line repaired: “${replacement}” becomes “${answer}” here. +${result.points} points.`,
+      `Repaired: “${replacement}” becomes “${answer}” here. +${result.points} points.`,
       'success',
     );
     this.shipAnsweredSentence(SUCCESS_HOLD_MS);
@@ -240,9 +240,9 @@ export class SentenceFactoryApp {
   private updateLineState(): void {
     this.elements.practice.classList.toggle('is-line-paused', this.linePaused);
     this.elements.pauseButton.setAttribute('aria-pressed', String(this.linePaused));
-    this.elements.pauseButton.textContent = this.linePaused ? 'Resume line' : 'Pause line';
+    this.elements.pauseButton.textContent = this.linePaused ? 'Resume' : 'Pause';
     this.elements.movementStatus.lastChild?.remove();
-    this.elements.movementStatus.append(this.linePaused ? ' Line paused' : ' Line moving');
+    this.elements.movementStatus.append(this.linePaused ? ' Paused' : ' Moving');
   }
 
   private startSentenceRun(): void {
@@ -399,7 +399,7 @@ function reducedMotion(): boolean {
 
 function resultTitle(score: number): string {
   if (score >= 72) return 'Precision shift.';
-  if (score >= 52) return 'The line is clear.';
+  if (score >= 52) return 'All clear.';
   return 'Repairs complete.';
 }
 

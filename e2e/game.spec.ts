@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 async function pauseAtCentre(page: Page): Promise<void> {
-  await page.getByRole('button', { name: 'Pause line' }).click();
+  await page.getByRole('button', { name: 'Pause' }).click();
   await page.locator('#sentence-carriage').evaluate((carriage) => {
     const animation = carriage.getAnimations()[0];
     const timing = animation?.effect?.getComputedTiming();
@@ -36,10 +36,10 @@ test('starts a shift, repairs a sentence, and exposes the source', async ({ page
   for (let index = 0; index < count; index += 1) {
     const word = words.nth(index);
     if (!(await word.isDisabled())) await word.dispatchEvent('click');
-    if ((await page.getByRole('status').textContent())?.includes('Line repaired')) break;
+    if ((await page.getByRole('status').textContent())?.includes('Repaired')) break;
   }
 
-  await expect(page.getByRole('status')).toContainText('Line repaired');
+  await expect(page.getByRole('status')).toContainText('Repaired');
   await expect(page.locator('.sentence-source')).toContainText('UD English PUD');
   await expect(page.locator('#sentence-carriage')).not.toHaveClass(/is-shipping/);
   await page.waitForTimeout(1_000);
@@ -75,7 +75,7 @@ test('moves sentences right to left, pauses, and advances missed sentences', asy
   const movingX = (await carriage.boundingBox())?.x ?? 0;
   expect(movingX).toBeLessThan(startX);
 
-  await page.getByRole('button', { name: 'Pause line' }).click();
+  await page.getByRole('button', { name: 'Pause' }).click();
   const pausedX = (await carriage.boundingBox())?.x ?? 0;
   await page.waitForTimeout(350);
   const stillPausedX = (await carriage.boundingBox())?.x ?? 0;
@@ -95,8 +95,8 @@ test('supports revealing a repair and changing production lines', async ({ page 
   await page.getByRole('button', { name: 'Show fix' }).click();
   await expect(page.getByRole('status')).toContainText('Fix shown');
 
-  await page.getByRole('button', { name: 'Change line' }).click();
-  await expect(page.getByRole('group', { name: 'Choose a line' })).toBeVisible();
+  await page.getByRole('button', { name: 'Change category' }).click();
+  await expect(page.getByRole('group', { name: 'Choose a category' })).toBeVisible();
 });
 
 test('has no detectable accessibility violations on the landing page or game', async ({ page }) => {
@@ -122,7 +122,7 @@ test('keeps both game controls visible in a short mobile viewport', async ({ pag
   await page.goto('/');
   await page.getByRole('button', { name: /Start shift/i }).click();
 
-  const pause = page.getByRole('button', { name: 'Pause line' });
+  const pause = page.getByRole('button', { name: 'Pause' });
   const reveal = page.getByRole('button', { name: 'Show fix' });
   await expect(pause).toBeInViewport();
   await expect(reveal).toBeInViewport();
