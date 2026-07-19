@@ -1993,13 +1993,20 @@ button.sentence-token:disabled {
 
   .constructor {
     bottom: 0.75rem;
-    width: clamp(3.4rem, 13vw, 5rem);
+    width: clamp(1.7rem, 6.5vw, 2.5rem);
     height: 11rem;
   }
 
   .constructor-mouth {
     bottom: 5.2rem;
+    width: 0.95rem;
     height: 5rem;
+  }
+
+  .constructor-panel {
+    left: 0.7rem;
+    right: 0.3rem;
+    height: 1.8rem;
   }
 
   .belt-rollers {
